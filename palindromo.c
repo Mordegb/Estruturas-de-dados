@@ -1,27 +1,29 @@
 #include <stdio.h>
 #include <string.h>
-int main() {
 
+int main() {
     char palavra[50];
-    printf("diga uma palavra de ate 50 letras:");
-    scanf("%s" ,palavra );
+    printf("Digite uma palavra de até 50 letras: ");
+    scanf("%s", palavra);
     int tam = strlen(palavra);
 
-    char aux[tam];
+    char aux[tam + 1]; // +1 para o terminador nulo
     int j = 0;
-    for(int i = tam - 1; i >= 0 ; i--){
+    
+    for(int i = tam - 1; i >= 0; i--) {
         aux[j] = palavra[i];
-        j += 1;
+        j++;
     }
+    
+    aux[j] = '\0'; 
 
-    printf("%s\n" , aux);
-    printf("%s\n" , palavra);
+    printf("Original: %s\n", palavra);
+    printf("Invertida: %s\n", aux);
 
-    if(strcmp(palavra,aux)){
-        printf("é palindromo");
-    }
-    else{
-        printf("não é palindromo\n");
+    if(strcmp(palavra, aux) == 0) {
+        printf("É palíndromo\n");
+    } else {
+        printf("Não é palíndromo.\n");
     }
 
     return 0;
