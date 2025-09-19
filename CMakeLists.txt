@@ -6,4 +6,5 @@ set(CMAKE_C_STANDARD 99)
 add_executable(Estrutura_de_dados main.c
         palindromo.c
         fibonachi0-1.c
-        manipulaArray.c)
+        manipulaArray.c
+        ArrayMemory.c)
