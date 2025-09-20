@@ -8,4 +8,5 @@
 /dataSources.local.xml
 .idea
 output
-dados_array.txt
+*.txt
+# o *. faz o gitignore ignorar todos os arquivos do tipo que vc botar dps do ponto "."
