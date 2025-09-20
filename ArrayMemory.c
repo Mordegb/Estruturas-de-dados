@@ -137,6 +137,7 @@ bool inserirPorIndice(int valor,int posi){
                 printf("não deu pra inseir pq o array ta cheio.\n");
             }
             salvarDados();
+        	imprimirArray();
             break;
             }
 
@@ -153,6 +154,7 @@ bool inserirPorIndice(int valor,int posi){
                 printf("se isso apareceu, fudeu, pq não deu pra inserir não , ai dento kkkkkkk\n");
             }
             salvarDados();
+        	imprimirArray();
             break;
             }
 
@@ -168,6 +170,7 @@ bool inserirPorIndice(int valor,int posi){
                 printf("posição inválida.\n");
             }
             salvarDados();
+        	imprimirArray();
             break;
             }
 
@@ -182,6 +185,7 @@ bool inserirPorIndice(int valor,int posi){
                 printf("valor não encontrado!\n");
             }
             salvarDados();
+        	imprimirArray();
             break;
             }
 
@@ -196,7 +200,7 @@ bool inserirPorIndice(int valor,int posi){
             else {
                 printf("valor %d não encontrado\n", valor);
             }
-            salvarDados();
+        	imprimirArray();
             break;
             }
 
