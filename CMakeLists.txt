@@ -7,4 +7,5 @@ add_executable(Estrutura_de_dados main.c
         palindromo.c
         fibonachi0-1.c
         manipulaArray.c
-        ArrayMemory.c)
+        ArrayMemory.c
+)
