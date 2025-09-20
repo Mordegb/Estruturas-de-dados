@@ -8,8 +8,8 @@ int main(){
    int p1 = 0;
    int p2 = 1;
    int p3 = 0;
-   
-   
+
+
    for(int i = 1; i < parada; i++){
        printf("%d\n" , p3);
        if(p3 == 0 ){
