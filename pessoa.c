@@ -97,25 +97,24 @@ bool removerPessoaIndice() {
     printf("diga o indice que deseja remover: ");
     int indice;
     scanf("%d" , &indice);
-    int i = 0;
-    while (indice != i) {
 
-        if (i == indice) {
-            printf("a seguinte pessoa ocupa esse indice do array: \n");
-            printf("Nome: %s\n", vetor[i].nome);
-            printf("Nome: %d\n", vetor[i].idade);
-            printf("Nome: %s\n", vetor[i].bairro);
+    printf("a seguinte pessoa ocupa esse indice do array: \n");
+    printf("Nome: %s\n", vetor[indice].nome);
+    printf("Nome: %d\n", vetor[indice].idade);
+    printf("Nome: %s\n", vetor[indice].bairro);
+
+    char res;
+    printf("deseja mesmo remover a pessoa?");
+    scanf("%s" , &res);
+    if (res == 's') {
+        for (int i = indice; i < qtd; i++) {
+            vetor[i] = vetor[i + 1];
         }
-        char res;
-        printf("deseja mesmo remover a pessoa?");
-        scanf("%s" , &res);
-        if (res == 's') {
-            for (int j = indice; j < qtd; j++) {
-                 vetor[j] = vetor[j + 1];
-            }
-        }
+        return true;
     }
-
+    else {
+        return false;
+    }
 
 }
 
