@@ -8,4 +8,5 @@ add_executable(Estrutura_de_dados main.c
         fibonachi0-1.c
         manipulaArray.c
         ArrayMemory.c
+        pessoa.c
 )
