@@ -4,7 +4,7 @@
 struct pessoa {
     char nome[50];
     int idade;
-    int matricula;
+    char bairro[50];
 };
 struct pessoa vetor[max];
 int qtd = 0;
@@ -23,7 +23,7 @@ void salvarDados() {
     for (int i = 0; i < qtd; i++) {
         fprintf(f,"%s\n" , vetor[i].nome);
         fprintf(f,"%d\n" , vetor[i].idade);
-        fprintf(f,"%d\n" , vetor[i].matricula);
+        fprintf(f,"%s\n" , vetor[i].bairro);
         printf("\n");
     }
     fclose(f);
@@ -43,14 +43,16 @@ void carregarDados() {
     for (int i = 0; i < qtd; i++) {
         fscanf(f,"%s\n" , vetor[i].nome);
         fscanf(f,"%d\n" , &vetor[i].idade);
-        fscanf(f,"%d\n" , &vetor[i].matricula);
+        fscanf(f,"%s\n" , vetor[i].bairro);
     }
     fclose(f);
     printf("deu bom carregar");
 
 }
 
-bool add_pessoa() {
+
+
+bool addPessoa() {
     if(qtd == max){
         return false;
     }
@@ -62,19 +64,69 @@ bool add_pessoa() {
     scanf("%d" , &pessoa.idade);
 
     printf("Insira o matricula: ");
-    scanf("%d" , &pessoa.matricula);
+    fgets(pessoa.bairro,50,stdin);
 
     vetor[qtd] = pessoa;
     qtd++;
     return true;
 }
 
+bool removerPessoaNome() {
+    if(qtd == 0) {
+        printf("tem que adicionar pra remover");
+        return false;
+    }
+    char nome[50];
+    printf("Insira o nome que deseja remover: ");
+    fgets(nome, 50, stdin);
+
+    int indice;
+    for (int i = 0; i < qtd; i++) {
+        if (vetor[i].nome == nome) {
+            indice = i;
+        }
+    }
+    for (int i = indice - 1; i < qtd; i++) {
+        vetor[i] = vetor[ i + 1];
+    }
+    qtd--;
+    return true;
+}
+
+bool removerPessoaIndice() {
+    printf("diga o indice que deseja remover: ");
+    int indice;
+    scanf("%d" , &indice);
+    int i = 0;
+    while (indice != i) {
+
+        if (i == indice) {
+            printf("a seguinte pessoa ocupa esse indice do array: \n");
+            printf("Nome: %s\n", vetor[i].nome);
+            printf("Nome: %d\n", vetor[i].idade);
+            printf("Nome: %s\n", vetor[i].bairro);
+        }
+        char res;
+        printf("deseja mesmo remover a pessoa?");
+        scanf("%s" , &res);
+        if (res == 's') {
+            for (int j = indice; j < qtd; j++) {
+                 vetor[j] = vetor[j + 1];
+            }
+        }
+    }
+
+
+}
+
+
+
 void listarpessoas() {
     printf("\n");
     for (int i = 0; i < qtd; i++) {
         printf("nome: %s\n" , vetor[i].nome);
         printf("idade: %d\n" , vetor[i].idade);
-        printf("matricula: %d\n" , vetor[i].matricula);
+        printf("bairro: %s\n" , vetor[i].bairro);
     }
     printf("\n");
 }
@@ -83,18 +135,6 @@ void listarpessoas() {
 
 
 int main() {
-carregarDados();
-
-    int opcao;
-    scanf("%d" , &opcao);
-    if (opcao == 1) {
-        add_pessoa();
-        salvarDados();
-    }
-    else {
-    listarpessoas();
-    }
-
 
     return 0;
 }
