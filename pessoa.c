@@ -1,13 +1,14 @@
 #include <stdio.h>
 #include <stdbool.h>
+#define max 100
 struct pessoa {
     char nome[50];
     int idade;
     int matricula;
 };
-#define max 100
 struct pessoa vetor[max];
 int qtd = 0;
+
 
 void salvarDados() {
     FILE *f = fopen("amigos.txt", "w");
@@ -35,9 +36,10 @@ void carregarDados() {
         printf("fudeu meu fi");
         return;
     }
-
+    //le a quantidade de pessoas
     fscanf(f,"%d\n" ,&qtd);
 
+    //le o arquivo e colocar no array de struct correspondente
     for (int i = 0; i < qtd; i++) {
         fscanf(f,"%s\n" , vetor[i].nome);
         fscanf(f,"%d\n" , &vetor[i].idade);
@@ -53,12 +55,15 @@ bool add_pessoa() {
         return false;
     }
     struct pessoa pessoa;
-    printf("Insira o nome:" "\n");
-    scanf("%s" , &pessoa.nome);
-    printf("Insira o idade:" "\n");
+    printf("Insira o nome: \n");
+    fgets(pessoa.nome,50,stdin);
+
+    printf("Insira o idade: ");
     scanf("%d" , &pessoa.idade);
-    printf("Insira o matricula:" "\n");
+
+    printf("Insira o matricula: ");
     scanf("%d" , &pessoa.matricula);
+
     vetor[qtd] = pessoa;
     qtd++;
     return true;
