@@ -45,7 +45,7 @@ void carregarDados() {
     for (int i = 0; i < qtd; i++) {
         fscanf(f,"%s\n" , vetor[i].nome);
         fscanf(f,"%d\n" , &vetor[i].idade);
-        fscanf(f,"%s\n" , vetor[i].bairro);
+        fscanf(f,"%s\n" , &vetor[i].bairro);
     }
     fclose(f);
     printf("deu bom carregar");
