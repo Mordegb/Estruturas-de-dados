@@ -1,5 +1,8 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 #define max 100
 struct pessoa {
     char nome[50];
@@ -57,14 +60,26 @@ bool addPessoa() {
         return false;
     }
     struct pessoa pessoa;
-    printf("Insira o nome: \n");
+    getchar();
+    printf("Insira o nome: ");
     fgets(pessoa.nome,50,stdin);
+    //remove o \n
+    pessoa.nome[strcspn(pessoa.nome, "\n")] = '\0';
+
+    //deixa o nome em maiusculo
+    for (int i = 0; pessoa.nome[i] != '\0'; i++) {
+        pessoa.nome[i] = toupper(pessoa.nome[i]);
+    }
 
     printf("Insira o idade: ");
     scanf("%d" , &pessoa.idade);
 
-    printf("Insira o matricula: ");
+    getchar();
+    printf("Insira o bairro: ");
     fgets(pessoa.bairro,50,stdin);
+    pessoa.bairro[strcspn(pessoa.bairro, "\n")] = '\0';
+    //remove o \n
+
 
     vetor[qtd] = pessoa;
     qtd++;
@@ -77,16 +92,37 @@ bool removerPessoaNome() {
         return false;
     }
     char nome[50];
+    getchar();
     printf("Insira o nome que deseja remover: ");
     fgets(nome, 50, stdin);
 
-    int indice;
+    //verifica se algum nome foi digitado
+    if (nome[0] == '\n' || nome[0] == '\0') {
+        printf("Nenhum nome foi inserido!\n");
+        return false;
+    }
+    //tira o \n
+    nome[strcspn(nome, "\n")] = '\0';
+
+    //deixa o nome em maiusculo
+    for (int i = 0; nome[i] != '\0'; i++) {
+        nome[i] = toupper(nome[i]);
+    }
+
+    int indice = 0;
+    //procura pelo nome
     for (int i = 0; i < qtd; i++) {
-        if (vetor[i].nome == nome) {
+        if (strcmp(vetor[i].nome,nome) == 0){
             indice = i;
+            break;
         }
     }
-    for (int i = indice - 1; i < qtd; i++) {
+    if (indice == 0) {
+        printf("nome não foi encontrado\n");
+        return false;
+    }
+
+    for (int i = indice; i < qtd - 1; i++) {
         vetor[i] = vetor[ i + 1];
     }
     qtd--;
@@ -94,23 +130,29 @@ bool removerPessoaNome() {
 }
 
 bool removerPessoaIndice() {
-    printf("diga o indice que deseja remover: ");
+    printf("diga o indice que deseja remover (0 a %d): ", qtd-1 );
     int indice;
     scanf("%d" , &indice);
+    getchar();
+
+    if (indice < 0 || indice >= qtd) {
+        printf("esse indice não pode\n");
+        return false;
+    }
 
     printf("a seguinte pessoa ocupa esse indice do array: \n");
-    printf("Nome: %s\n", vetor[indice].nome);
-    printf("Nome: %d\n", vetor[indice].idade);
-    printf("Nome: %s\n", vetor[indice].bairro);
+    printf("nome: %s\n", vetor[indice].nome);
+    printf("idade: %d\n", vetor[indice].idade);
+    printf("bairro: %s\n\n", vetor[indice].bairro);
 
     char res;
-    printf("deseja mesmo remover a pessoa?");
+    printf("deseja mesmo remover a pessoa?\n");
     scanf("%s" , &res);
-    if (res == 's') {
-        for (int i = indice; i < qtd; i++) {
+    if (res == 's' || res == 'S') {
+        for (int i = indice; i < qtd - 1; i++) {
             vetor[i] = vetor[i + 1];
-            qtd--;
         }
+        qtd--;
         return true;
     }
     else {
@@ -121,13 +163,17 @@ bool removerPessoaIndice() {
 
 
 
+
+
 void listarpessoas() {
     printf("\n");
     for (int i = 0; i < qtd; i++) {
         printf("nome: %s\n" , vetor[i].nome);
         printf("idade: %d\n" , vetor[i].idade);
         printf("bairro: %s\n" , vetor[i].bairro);
+        printf("\n");
     }
+    printf("quantidade de pessoas: %d" , qtd);
     printf("\n");
 }
 
@@ -135,6 +181,40 @@ void listarpessoas() {
 
 
 int main() {
+    carregarDados();
+    printf("\n\n");
+      int opt;
+    printf("1 - inserir pessoa.      2 - excluir por nome.\n");
+    printf("3 - excluir por indice.     4 - listar pessoas.\n");
+    scanf("%d", &opt);
+
+    switch (opt) {
+        case 1: {
+            addPessoa();
+            salvarDados();
+            break;
+            }
+
+        case 2: {
+            removerPessoaNome();
+            salvarDados();
+            break;
+            }
+
+
+        case 3: {
+            removerPessoaIndice();
+            salvarDados();
+            break;
+            }
+
+        case 4: {
+            listarpessoas();
+            salvarDados();
+            break;
+        }
+
+    }
 
     return 0;
 }
