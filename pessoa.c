@@ -1,7 +1,6 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdbool.h>
-#include <stdlib.h>
 #include <string.h>
 #define max 100
 struct pessoa {
@@ -80,7 +79,6 @@ bool addPessoa() {
     pessoa.bairro[strcspn(pessoa.bairro, "\n")] = '\0';
     //remove o \n
 
-
     vetor[qtd] = pessoa;
     qtd++;
     return true;
@@ -101,6 +99,7 @@ bool removerPessoaNome() {
         printf("Nenhum nome foi inserido!\n");
         return false;
     }
+
     //tira o \n
     nome[strcspn(nome, "\n")] = '\0';
 
@@ -110,7 +109,6 @@ bool removerPessoaNome() {
     }
 
     int indice = 0;
-    //procura pelo nome
     for (int i = 0; i < qtd; i++) {
         if (strcmp(vetor[i].nome,nome) == 0){
             indice = i;
@@ -128,6 +126,7 @@ bool removerPessoaNome() {
     qtd--;
     return true;
 }
+
 
 bool removerPessoaIndice() {
     printf("diga o indice que deseja remover (0 a %d): ", qtd-1 );
