@@ -10,7 +10,7 @@ struct pessoa vetor[max];
 int qtd = 0;
 
 void salvarDados() {
-    FILE *f = fopen("pessoas.txt", "w");
+    FILE *f = fopen("amigos.txt", "w");
     if (f == NULL) {
         printf("fudeu meu fi");
         return;
