@@ -109,6 +109,7 @@ bool removerPessoaIndice() {
     if (res == 's') {
         for (int i = indice; i < qtd; i++) {
             vetor[i] = vetor[i + 1];
+            qtd--;
         }
         return true;
     }
