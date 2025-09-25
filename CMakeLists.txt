@@ -9,4 +9,5 @@ add_executable(Estrutura_de_dados main.c
         manipulaArray.c
         ArrayMemory.c
         pessoa.c
+        livraria.c
 )
