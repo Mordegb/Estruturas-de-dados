@@ -12,7 +12,7 @@ struct livro livros[10];
 int qtd = 0;
 
 void salvarDados() {
-    FILE *f = fopen(arquivo, "w");
+    FILE *f = fopen(arquivo, "wii");
     if (f == NULL) {
         printf("fudeu meu fi");
         return;
