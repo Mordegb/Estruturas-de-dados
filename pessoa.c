@@ -4,9 +4,9 @@
 #include <string.h>
 #define max 100
 struct pessoa {
-    char nome[50];
+    char nome[90];
     int idade;
-    char bairro[50];
+    char bairro[90];
 };
 struct pessoa vetor[max];
 int qtd = 0;
@@ -29,7 +29,7 @@ void salvarDados() {
         printf("\n");
     }
     fclose(f);
-    printf("deu bom salvar");
+    printf("deu bom salvar\n");
 }
 
 void carregarDados() {
@@ -61,7 +61,7 @@ bool addPessoa() {
     struct pessoa pessoa;
     getchar();
     printf("Insira o nome: ");
-    fgets(pessoa.nome,50,stdin);
+    fgets(pessoa.nome,90,stdin);
     //remove o \n
     pessoa.nome[strcspn(pessoa.nome, "\n")] = '\0';
 
@@ -75,7 +75,7 @@ bool addPessoa() {
 
     getchar();
     printf("Insira o bairro: ");
-    fgets(pessoa.bairro,50,stdin);
+    fgets(pessoa.bairro,90,stdin);
     pessoa.bairro[strcspn(pessoa.bairro, "\n")] = '\0';
     //remove o \n
 
@@ -89,10 +89,10 @@ bool removerPessoaNome() {
         printf("tem que adicionar pra remover");
         return false;
     }
-    char nome[50];
+    char nome[90];
     getchar();
     printf("Insira o nome que deseja remover: ");
-    fgets(nome, 50, stdin);
+    fgets(nome, 90, stdin);
 
     //verifica se algum nome foi digitado
     if (nome[0] == '\n' || nome[0] == '\0') {
@@ -160,8 +160,43 @@ bool removerPessoaIndice() {
 
 }
 
+bool editarPessoa(){
+    int indice;
+    
+    printf("diga o indice da pessoa que deseja editar: ");
+     scanf("%d" , &indice);
+    
+     if(indice > qtd){
+        return false;
+    }
 
+    printf("NOME: %s\n",vetor[indice].nome);
+    printf("IDADE: %d\n",vetor[indice].idade);
+    printf("BAIRRO: %s\n\n",vetor[indice].bairro);
+    struct pessoa novo;
 
+    getchar();
+    printf("Novo nome: ");
+    fgets(novo.nome,90,stdin);
+    //remove o \n
+    novo.nome[strcspn(novo.nome, "\n")] = '\0';
+
+    //deixa o nome em maiusculo
+    for (int i = 0; novo.nome[i] != '\0'; i++) {
+        novo.nome[i] = toupper(novo.nome[i]);
+    }
+    printf("nova idade: ");
+     scanf("%d", &novo.idade);
+   
+    getchar();
+    printf("novo endereço: ");
+     fgets(novo.bairro,90,stdin);
+    //remove o \n
+    novo.bairro[strcspn(novo.bairro, "\n")] = '\0';
+    
+    vetor[indice] = novo;
+    return true;
+}
 
 
 void listarpessoas() {
@@ -177,14 +212,13 @@ void listarpessoas() {
 }
 
 
-
-
 int main() {
     carregarDados();
     printf("\n\n");
       int opt;
     printf("1 - inserir pessoa.      2 - excluir por nome.\n");
     printf("3 - excluir por indice.     4 - listar pessoas.\n");
+    printf("5 - editar pessoa.\n");
     scanf("%d", &opt);
 
     switch (opt) {
@@ -209,6 +243,12 @@ int main() {
 
         case 4: {
             listarpessoas();
+            salvarDados();
+            break;
+        }
+
+        case 5: {
+            editarPessoa();
             salvarDados();
             break;
         }
