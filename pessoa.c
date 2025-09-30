@@ -146,7 +146,7 @@ bool removerPessoaIndice() {
 
     char res;
     printf("deseja mesmo remover a pessoa?\n");
-    scanf("%s" , &res);
+    scanf("%c" , &res);
     if (res == 's' || res == 'S') {
         for (int i = indice; i < qtd - 1; i++) {
             vetor[i] = vetor[i + 1];
