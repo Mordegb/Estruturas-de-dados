@@ -10,4 +10,5 @@ add_executable(Estrutura_de_dados main.c
         ArrayMemory.c
         pessoa.c
         livraria.c
+        malloc.c
 )
