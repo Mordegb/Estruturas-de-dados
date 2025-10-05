@@ -52,8 +52,6 @@ void carregarDados() {
 
 }
 
-
-
 bool addPessoa() {
     if(qtd == max){
         return false;
