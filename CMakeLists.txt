@@ -11,4 +11,5 @@ add_executable(Estrutura_de_dados main.c
         pessoa.c
         livraria.c
         malloc.c
+        listaEncadeada.c
 )
