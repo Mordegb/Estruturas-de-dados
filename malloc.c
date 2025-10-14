@@ -27,6 +27,7 @@ int main() {
 		return 1;
 	}
 
+	//array dinamico
 	float* leituras = (float*)malloc(*qtd * sizeof(float));
 
 	if(leituras == NULL) {
