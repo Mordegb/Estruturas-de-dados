@@ -124,7 +124,7 @@ int main(){
     do{
         printf("=====Bem vindo ao acervo=====\n");
         printf("1 - adicionar vagão, 2 - remover vagão por codigo\n ");
-        printf("3 - buscar por codigo , 4 listar livros\n");
+        printf("3 - buscar por codigo , 4 listar vagões\n");
         scanf("%d" , &opt);
         getchar();
 
